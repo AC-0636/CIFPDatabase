@@ -59,6 +59,8 @@ There is also general information applied for every situation:
 **-Airway/Route** *5th+6th = ER*  
 **-Area** *this info is obtain from ARINC424 about the basic intro of the CIFP*  
 
+***see CIFPdbInfo.docx for more detail of the table setting***
+
   
 
 ##How to use##    
