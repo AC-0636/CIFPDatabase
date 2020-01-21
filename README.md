@@ -52,12 +52,12 @@ The current edition of the generated database include the following information 
 There is also general information applied for every situation:  
 **-Waypoints**  
      ->The CIFP contain 4 types of waypoint, its representation starts at the 5th bit of the string  
-       1. D,DB type, *5th letter = D, or 5th+6th = DB*
-       2. EAENRT type, *starting from 5th = EAENRT*
-       3. terminal waypoint, usually in the airport *5th =P + 13rd = C*
+       1. D,DB type, *5th letter = D, or 5th+6th = DB*  
+       2. EAENRT type, *starting from 5th = EAENRT*  
+       3. terminal waypoint, usually in the airport *5th =P + 13rd = C*  
 **-Airspaces** *5th letter = U, or 2rd letter = U + 5th letter = U*  
 **-Airway/Route** *5th+6th = ER*  
-**-Area** *this info is obtain from ARINC424 about the basic intro of the CIFP*
+**-Area** *this info is obtain from ARINC424 about the basic intro of the CIFP*  
 
   
 
