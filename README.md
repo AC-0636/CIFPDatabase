@@ -13,7 +13,7 @@ The document is information is generated base on Airlines Electronic Engineering
   
 
 
-##**Reference link/tool/extra material**##:  
+##**Reference link/tool/extra material**:##  
 **1.ARINC424-17**
 The current version of ARINC424 used is version 18, however, the program in this repo is using ARINC424 version 17 as reference. For more information of ARINC424-17, visit:  
 http://s8f1feefd4f70cc50.jimcontent.com/download/version/1347002609/module/6126893315/name/ARINC%20424-17.pdf  
@@ -39,16 +39,26 @@ For functions in SpatiaLite library:
 http://www.gaia-gis.it/gaia-sins/spatialite-sql-4.2.0.html  
 
   
-##**Information in the database**##:  
-The current edition of the generated database include the following information:  
-**-Airspaces**
-**-Airway/Route**  
-**-Approaches**
-**-Area**
-**-Runways**
-**-SIDs** (Standard Instrument Departure)  
-**-STARs** (Standard Terminal Arrivals)  
+##**Information in the database**:## 
+The CIFP file have information for both airport and heliport, the current version only considers **airport**. This type of information is distinguish by having the **5th** letter as **"P"** in the line of string from the CIFP. 
+For all the different information about the airport, it is obtained by checking the 13rd the letter of a given line of string. 
+The current edition of the generated database include the following information of an airport:  
+
+**-Approaches** *13rd letter = F*  
+**-Runways** *13rd letter = G*  
+**-SIDs** (Standard Instrument Departure) *13rd letter = D*  
+**-STARs** (Standard Terminal Arrivals) *13rd letter = E*  
+  
+There is also general information applied for every situation:  
 **-Waypoints**  
+     ->The CIFP contain 4 types of waypoint, its representation starts at the 5th bit of the string 
+       1. D,DB type, *5th letter = D, or 5th+6th = DB*
+       2. EAENRT type, *starting from 5th = EAENRT*
+       3. terminal waypoint, usually in the airport *5th =P + 13rd = C*
+**-Airspaces** *5th letter = U, or 2rd letter = U + 5th letter = U*
+**-Airway/Route** *5th+6th = ER*  
+**-Area** *this info is obtain from ARINC424 about the basic intro of the CIFP*
+
   
 
 ##How to use##    
