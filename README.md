@@ -55,7 +55,7 @@ There is also general information applied for every situation:
        1. D,DB type, *5th letter = D, or 5th+6th = DB*
        2. EAENRT type, *starting from 5th = EAENRT*
        3. terminal waypoint, usually in the airport *5th =P + 13rd = C*
-**-Airspaces** *5th letter = U, or 2rd letter = U + 5th letter = U*
+**-Airspaces** *5th letter = U, or 2rd letter = U + 5th letter = U*  
 **-Airway/Route** *5th+6th = ER*  
 **-Area** *this info is obtain from ARINC424 about the basic intro of the CIFP*
 
