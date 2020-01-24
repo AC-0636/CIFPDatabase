@@ -66,16 +66,7 @@ void ManageSIDs::ManageSIDsString(SortCIFP sort_, Tool tool_, ManageWaypoints *m
 		{
 			temptempstr = tempstr.substr(0, 5);
 		}
-		/*string sample;
-		for (int l = 0; l < sort_.WaypointsNum; l++)
-		{
-			sample = magWpt->WaypointsInfo[l][1];
-			if (sample.find(temptempstr) == 0)
-			{
-				SIDsData[i][1] = l;
-				l = sort_.WaypointsNum + 1;
-			}
-		}*/
+
 
 		SIDsData[i][1] = othertool_.getWaypointID(sort_, magWpt_,temptempstr);
 		int id = SIDsData[i][1];

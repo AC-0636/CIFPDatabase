@@ -94,7 +94,7 @@ void ManageSTARs::ManageAirportSTARs(SortCIFP sort_)
 
 
 
-void ManageSTARs::ManageSTARsProcedure(SortCIFP sort_, ManageWaypoints *magWpt_, Tool tool_)
+void ManageSTARs::ManageSTARsProcedure(SortCIFP sort_, ManageWaypoints *magWpt_, Tool tool_, OtherTool othertool_)
 {
 	ManageAirportSTARs(sort_);
 	string tempName, leg, label1, label2, temp,tempstr,temptempstr;
@@ -141,16 +141,10 @@ void ManageSTARs::ManageSTARsProcedure(SortCIFP sort_, ManageWaypoints *magWpt_,
 				{
 					temptempstr = temp.substr(0, 5);
 				}
-				string sample;
-				for (int l = 0; l < sort_.WaypointsNum; l++)
-				{
-					sample = magWpt_->WaypointsInfo[l][1];
-					if (sample.find(temptempstr) == 0)
-					{
-						RawSTARsProcedureData[k][0] = l;
-						l = sort_.WaypointsNum + 1;
-					}
-				}
+			
+				RawSTARsProcedureData[i][1] = othertool_.getWaypointID(sort_, magWpt_, temptempstr);
+				int id = RawSTARsProcedureData[i][1];
+				string sample = magWpt_->WaypointsInfo[id][1];
 				////////////////////////////////
 				//////////////////////////////////
 				//MARK: some code missing waypoint data -> to be fixed

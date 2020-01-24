@@ -54,24 +54,24 @@ void SetupDB(int argc, char* argv[])
 	/*sql = "DROP TABLE Area;";
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	sql = "DROP TABLE Waypoints;";
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);*/
 	sql = "DROP TABLE AirportsSTARs;";
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	sql = "DROP TABLE STARs;";
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	sql = "DROP TABLE STARsBLOB";
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);*/
-	sql = "DROP TABLE SIDs;";
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
-	/*sql = "DROP TABLE Runways;";
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);*/
+		/*sql = "DROP TABLE SIDs;";
+	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+sql = "DROP TABLE Runways;";
+	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	sql = "DROP TABLE Approaches;";
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	sql = "DROP TABLE ApproachesBLOB;";
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	sql = "DROP TABLE AirwayRoutes;";
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
-	/*sql = "DROP TABLE Airspaces;";
+	sql = "DROP TABLE Airspaces;";
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 	
 
@@ -88,7 +88,7 @@ void SetupDB(int argc, char* argv[])
 	"WaypointType TEXT NOT NULL,"\
 	"Longitude DOUBLE NOT NULL,"\
 	"Latitude DOUBLE NOT NULL);";
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);*/
 
 	sql = "CREATE TABLE IF NOT EXISTS AirportsSTARs("\
 	"AirportCode TEXT NOT NULL,"\
@@ -112,9 +112,9 @@ void SetupDB(int argc, char* argv[])
 	"ProcedureName TEXT NOT NULL,"\
 	"ProcedureType TEXT NOT NULL,"\
 	"ArrivingRunway TEXT);";
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);*/
+	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 
-	sql = "CREATE TABLE IF NOT EXISTS SIDs("\
+	/*sql = "CREATE TABLE IF NOT EXISTS SIDs("\
 	"SIDsID INT PRIMARY KEY NOT NULL,"\
 	"AreaID INT NOT NULL,"\
 	"AirportCode TEXT NOT NULL,"\
@@ -130,7 +130,7 @@ void SetupDB(int argc, char* argv[])
 	"Speed INT NOT NULL);";
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 
-	/*sql="CREATE TABLE IF NOT EXISTS Runways("\
+	sql="CREATE TABLE IF NOT EXISTS Runways("\
 	"AreaID INT NOT NULL,"\
 	"AirportCode TEXT NOT NULL,"\
 	"RunwayName TEXT NOT NULL,"\
@@ -140,7 +140,7 @@ void SetupDB(int argc, char* argv[])
 	"Latitude INT NOT NULL,"\
 	"Longitude INT NOT NULL,"\
 	"Elevation INT NOT NULL);";
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);*/
+	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 
 	sql = "CREATE TABLE IF NOT EXISTS Approaches("\
 		"AreaID INT NOT NULL,"\
@@ -185,7 +185,7 @@ void SetupDB(int argc, char* argv[])
 	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
 
 
-	/*sql = "CREATE TABLE IF NOT EXISTS Airspaces("\
+	sql = "CREATE TABLE IF NOT EXISTS Airspaces("\
 	"AreaID INT NOT NULL,"\
 	"AirportCode TEXT NOT NULL,"\
 	"Type TEXT NOT NULL,"\
@@ -753,24 +753,24 @@ int main()
 	cout << "Managing waypoint info..." << endl;
 	ManageWaypoints *magWpt_ = new ManageWaypoints(sort_, tool_);
 	cout << "Managing STAR info..." << endl;
-	//ManageSTARs *magSTARs_= new ManageSTARs;
-	//magSTARs_->ManageSTARsProcedure(sort_, magWpt_,tool_);
+	ManageSTARs *magSTARs_= new ManageSTARs;
+	magSTARs_->ManageSTARsProcedure(sort_, magWpt_,tool_,othertool_);
 	
 	cout << "Managing SID info..." << endl;
-	ManageSIDs *magSID_ = new ManageSIDs;
-	magSID_->ManageSIDsString(sort_, tool_, magWpt_,othertool_);
+//	ManageSIDs *magSID_ = new ManageSIDs;
+	//magSID_->ManageSIDsString(sort_, tool_, magWpt_,othertool_);
 
 	cout << "Managing Runways info..." << endl;
 	//ManageRunways *magRWs_ = new ManageRunways;
 	//magRWs_->ManageRunwaysString(sort_, tool_);
 
 	cout << "Managing Approaches info..." << endl;
-	ManageApproaches *magApproach_ = new ManageApproaches;
-	magApproach_->ManageApproachesString(sort_, tool_, othertool_, magWpt_);
+	//ManageApproaches *magApproach_ = new ManageApproaches;
+	//magApproach_->ManageApproachesString(sort_, tool_, othertool_, magWpt_);
 
 	cout << "Managing airway and route info..." << endl;
-	ManageAirways *magAirway_ = new ManageAirways;
-	magAirway_->ManageAirwayRoutesString(sort_,tool_,othertool_,magWpt_);
+	//ManageAirways *magAirway_ = new ManageAirways;
+	//magAirway_->ManageAirwayRoutesString(sort_,tool_,othertool_,magWpt_);
 
 	cout << "Managing airspace info..." << endl;
 	//ManageAirspace *magAirspc_ = new ManageAirspace;
@@ -787,24 +787,24 @@ int main()
 	//FillWaypointsTable(DB,sort_,magWpt_);
 
 	cout << "Generating STARs table..." << endl;
-	//FillAirportsSTARsTable(DB,magSTARs_);
-	//FillSTARsTable(DB,magSTARs_);
+	FillAirportsSTARsTable(DB,magSTARs_);
+	FillSTARsTable(DB,magSTARs_);
 
 	cout << "Generating STARsBLOB table..." << endl;
-	//FillSTARsBLOBTable(DB,magSTARs_);
+	FillSTARsBLOBTable(DB,magSTARs_);
 
 	cout << "Generating SIDs table..." << endl;
-	FillSIDsTable(DB,sort_,magSID_);
+	//FillSIDsTable(DB,sort_,magSID_);
 
 	cout << "Generating runways table..." << endl;
 //	FillRunwaysTable(DB,sort_,magRWs_);
 
 	cout << "Generating approach table..." << endl;
-	FillApproachesTable(DB,sort_,magApproach_);
-	FillApproachesBLOBTable(DB,magApproach_);
+	//FillApproachesTable(DB,sort_,magApproach_);
+	//FillApproachesBLOBTable(DB,magApproach_);
 
 	cout << "Generating airway/route table..." << endl;
-	FillAirwayRoutesTable(DB,sort_,magAirway_);
+	//FillAirwayRoutesTable(DB,sort_,magAirway_);
 
 	cout << "Generating airspace table..." << endl;
 	//FillAirspacesTable(DB,sort_,magAirspc_);

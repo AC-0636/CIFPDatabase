@@ -2,6 +2,7 @@
 #include "SortCIFP.h"
 #include "ManageWaypoints.h"
 #include "Tool.h"
+#include "OtherTool.h"
 #define DataSize 400000
 class ManageSTARs
 {
@@ -46,7 +47,7 @@ public:
 	double RawSTARsProcedureData[DataSize][6];
 	//[][0]procedure name, [][1]theta no./STAR
 	string RawSTARsProcedureInfo[DataSize][2];*/
-	void ManageSTARsProcedure(SortCIFP sort_, ManageWaypoints *magWpt_, Tool tool_);
+	void ManageSTARsProcedure(SortCIFP sort_, ManageWaypoints *magWpt_, Tool tool_, OtherTool othertool_);
 
 private:
 	string * tempSTARsList = new string[DataSize];
