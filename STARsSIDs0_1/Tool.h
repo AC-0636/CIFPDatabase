@@ -66,7 +66,7 @@ private:
 	//path type
 	//assign IDs to path type by using there order stored in array
 	//to have IDs start from 1, paths[0] is set to "XX" which is not exist in actual path type
-	string PathList[24] = { "XX", "AF", "CA", "CD", "CF", "CI", "CR", "DF", "FA", "FC", "FD", "FM", "HA", "HF", "HM", "IF", "PI", "RF", "TF", "VA", "VD", "VI", "VM", "VR"};
+	string PathList[24] = { "N/A", "AF", "CA", "CD", "CF", "CI", "CR", "DF", "FA", "FC", "FD", "FM", "HA", "HF", "HM", "IF", "PI", "RF", "TF", "VA", "VD", "VI", "VM", "VR"};
 
 	//approach type
 	//use a 2D array to store the info

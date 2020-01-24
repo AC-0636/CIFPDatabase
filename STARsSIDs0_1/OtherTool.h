@@ -11,5 +11,8 @@ public:
 
 	//get the approach frequency
 	double ApproachFrequency(string tempstr, SortCIFP sort_,ManageWaypoints *magWpt_);
+
+	//get waypoint IDs
+	int getWaypointID(SortCIFP sort_, ManageWaypoints *magWpt_, string temptempstr);
 };
 

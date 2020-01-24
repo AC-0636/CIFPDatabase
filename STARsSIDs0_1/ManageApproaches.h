@@ -19,7 +19,6 @@ public:
 	double preFrequency;// for ILS nav frequency point, store previous frequency to fill empty frequency value
 
 
-
 	ManageApproaches();
 	~ManageApproaches();
 
@@ -30,6 +29,6 @@ public:
 	//[][0]airport code, [][1]approach type (DME/ILS/RNAV /miss etc), [][2] approach type + runway, [][3] approach name,
 	[][4] theta/approaches/miss;
 	string ApproachesInfo[132100][5];*/
-	void ManageApproachesString(SortCIFP sort_, Tool tool_, OtherTool othertool_, ManageWaypoints *magWpt);
+	void ManageApproachesString(SortCIFP sort_, Tool tool_, OtherTool othertool_, ManageWaypoints *magWpt_);
 };
 

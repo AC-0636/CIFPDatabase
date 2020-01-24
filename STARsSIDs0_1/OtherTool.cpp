@@ -52,3 +52,23 @@ double OtherTool::ApproachFrequency(string tempstr, SortCIFP sort_,ManageWaypoin
 
 	return frequency;
 }
+
+
+//get waypoint ID
+int OtherTool::getWaypointID(SortCIFP sort_, ManageWaypoints *magWpt_, string temptempstr)
+{
+
+	string sample;
+	int id = 0;
+	for (int l = 0; l < sort_.WaypointsNum; l++)
+	{
+		sample = magWpt_->WaypointsInfo[l][1];
+		if (sample.find(temptempstr) == 0 && sample.length() == temptempstr.length())
+		{
+			id = l;
+			l = sort_.WaypointsNum + 1;
+		}
+	}
+	return id;
+
+}

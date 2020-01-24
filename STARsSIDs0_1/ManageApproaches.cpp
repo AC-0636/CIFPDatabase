@@ -20,7 +20,7 @@ double ApproachesData[132100][6];
 //[][0]airport code, [][1]approach type (DME/ILS/RNAV /miss etc), [][2] approach type + runway, [][3] approach name,
 [][4] theta/approaches/miss;
 string ApproachesInfo[132100][5];*/
-void ManageApproaches::ManageApproachesString(SortCIFP sort_, Tool tool_, OtherTool othertool_,ManageWaypoints *magWpt)
+void ManageApproaches::ManageApproachesString(SortCIFP sort_, Tool tool_, OtherTool othertool_,ManageWaypoints *magWpt_)
 {
 	int miss = 0;
 	int mark = 0;
@@ -50,13 +50,13 @@ void ManageApproaches::ManageApproachesString(SortCIFP sort_, Tool tool_, OtherT
 		if (sort_.ApproachesString[i][13] != 'R')//ApproachesString[i][13] == 'I' || ApproachesString[i][13] == 'V' || ApproachesString[i][13] == 'L')
 		{
 			//get channel frequency
-			ApproachesData[i][5] = othertool_.ApproachFrequency(sort_.ApproachesString[i].substr(50, 4),sort_,magWpt);
+			ApproachesData[i][5] = othertool_.ApproachFrequency(sort_.ApproachesString[i].substr(50, 4),sort_,magWpt_);
 			if (ApproachesData[i][5] == 0)
 			{
 				preFrequency = ApproachesData[i - 1][5];
 				if (preFrequency == 0 || preFrequency == -999 || stod(sort_.ApproachesString[i].substr(27, 2)) == 10)
 				{
-					ApproachesData[i][5] = othertool_.ApproachFrequency(sort_.ApproachesString[i].substr(20, 4),sort_, magWpt);
+					ApproachesData[i][5] = othertool_.ApproachFrequency(sort_.ApproachesString[i].substr(20, 4),sort_, magWpt_);
 				}
 				else
 				{
@@ -187,22 +187,20 @@ void ManageApproaches::ManageApproachesString(SortCIFP sort_, Tool tool_, OtherT
 			temptempstr = tempstr.substr(0, 5);
 		}
 
-		string sample;
-		for (int l = 0; l < sort_.WaypointsNum; l++)
-		{
-			sample = magWpt->WaypointsInfo[l][1];
-			if (sample.find(temptempstr) == 0)
-			{
-				ApproachesData[i][1] = l;
-				l = sort_.WaypointsNum + 1;
-			}
-		}
+		
+
+
+		ApproachesData[i][1] = othertool_.getWaypointID(sort_, magWpt_, temptempstr);
+		int id = ApproachesData[i][1];
+		string sample = magWpt_->WaypointsInfo[id][1];
+
+
 		////////////////////////////////
 		//////////////////////////////////
 		//MARK: some code missing waypoint data -> to be fixed
 		if (ApproachesData[i][1] == 0)
 		{
-			sample = magWpt->WaypointsInfo[0][1];
+			sample = magWpt_->WaypointsInfo[0][1];
 			if (sample.find(temptempstr) != 0)
 			{
 				ApproachesData[i][1] = NA;
@@ -338,6 +336,9 @@ void ManageApproaches::ManageApproachesString(SortCIFP sort_, Tool tool_, OtherT
 		if (tempstr == "  ")
 		{
 			ApproachesInfo[i][7] = "N/A";
+			//path info not available, set patn id to 0
+			//see the PathList in Tool.h
+			ApproachesData[i][6] = 0;
 		}
 		else
 		{

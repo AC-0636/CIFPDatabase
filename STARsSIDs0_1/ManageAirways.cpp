@@ -13,7 +13,7 @@ ManageAirways::~ManageAirways()
 {
 }
 
-void ManageAirways::ManageAirwayRoutesString(SortCIFP sort_, Tool tool_, ManageWaypoints *magWpt)
+void ManageAirways::ManageAirwayRoutesString(SortCIFP sort_, Tool tool_, OtherTool othertool_, ManageWaypoints *magWpt_)
 {
 	string tempstr, temptempstr;
 	//int rankmark=0;
@@ -65,7 +65,11 @@ void ManageAirways::ManageAirwayRoutesString(SortCIFP sort_, Tool tool_, ManageW
 			temptempstr = tempstr.substr(0, 5);
 		}
 
-		string sample;
+		AirwayRoutesData[i][1] = othertool_.getWaypointID(sort_, magWpt_, temptempstr);
+		int id = AirwayRoutesData[i][1];
+		string sample = magWpt_->WaypointsInfo[id][1];
+
+	/*	string sample;
 		for (int l = 0; l < sort_.WaypointsNum; l++)
 		{
 			sample = magWpt->WaypointsInfo[l][1];
@@ -74,12 +78,12 @@ void ManageAirways::ManageAirwayRoutesString(SortCIFP sort_, Tool tool_, ManageW
 				AirwayRoutesData[i][1] = l;
 				l = sort_.WaypointsNum + 1;
 			}
-		}
+		}*/
 		////////////////////////////////
 		//MARK: some code missing waypoint data -> to be fixed
 		if (AirwayRoutesData[i][1] == 0)
 		{
-			sample = magWpt->WaypointsInfo[0][1];
+			sample = magWpt_->WaypointsInfo[0][1];
 			if (sample.find(temptempstr) != 0)
 			{
 				AirwayRoutesData[i][1] = NA;
@@ -109,6 +113,5 @@ void ManageAirways::ManageAirwayRoutesString(SortCIFP sort_, Tool tool_, ManageW
 	}
 
 
-	cout << AirwayRoutesInfo[5]<< endl;
 	delete[] sort_.AirwayRoutesString;
 }

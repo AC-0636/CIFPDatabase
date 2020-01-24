@@ -1,6 +1,7 @@
 #pragma once
 #include "SortCIFP.h"
 #include "Tool.h"
+#include "OtherTool.h"
 #include "ManageWaypoints.h"
 class ManageAirways
 {
@@ -21,6 +22,6 @@ public:
 	double AirwayRoutesData[20150][6];
 	//[][0]Airway/RouteName
 	string AirwayRoutesInfo[20150];*/
-	void ManageAirwayRoutesString(SortCIFP sort_, Tool tool_, ManageWaypoints *magWpt);
+	void ManageAirwayRoutesString(SortCIFP sort_, Tool tool_, OtherTool othertool_, ManageWaypoints *magWpt);
 };
 

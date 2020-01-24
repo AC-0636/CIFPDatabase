@@ -11,7 +11,7 @@ ManageSIDs::~ManageSIDs()
 {
 }
 
-void ManageSIDs::ManageSIDsString(SortCIFP sort_, Tool tool_, ManageWaypoints *magWpt)
+void ManageSIDs::ManageSIDsString(SortCIFP sort_, Tool tool_, ManageWaypoints *magWpt_, OtherTool othertool_)
 {
 	string leg, label, tempstr,temptempstr;
 	double tempwaypoint = 0;
@@ -19,6 +19,7 @@ void ManageSIDs::ManageSIDsString(SortCIFP sort_, Tool tool_, ManageWaypoints *m
 	int count = 0;
 	int typenum = 1;
 	int end = 0;
+	int mark = 0;
 	int temporder = 0;
 	int sid = 1;
 	string sidstr;
@@ -65,7 +66,7 @@ void ManageSIDs::ManageSIDsString(SortCIFP sort_, Tool tool_, ManageWaypoints *m
 		{
 			temptempstr = tempstr.substr(0, 5);
 		}
-		string sample;
+		/*string sample;
 		for (int l = 0; l < sort_.WaypointsNum; l++)
 		{
 			sample = magWpt->WaypointsInfo[l][1];
@@ -74,13 +75,18 @@ void ManageSIDs::ManageSIDsString(SortCIFP sort_, Tool tool_, ManageWaypoints *m
 				SIDsData[i][1] = l;
 				l = sort_.WaypointsNum + 1;
 			}
-		}
+		}*/
+
+		SIDsData[i][1] = othertool_.getWaypointID(sort_, magWpt_,temptempstr);
+		int id = SIDsData[i][1];
+		string sample = magWpt_->WaypointsInfo[id][1];
+
 		////////////////////////////////
 		//////////////////////////////////
 		//MARK: some code missing waypoint data -> to be fixed
 		if (SIDsData[i][1] == 0)
 		{
-			sample = magWpt->WaypointsInfo[0][1];
+			sample = magWpt_->WaypointsInfo[0][1];
 			if (sample.find(temptempstr) != 0)
 			{
 				SIDsData[i][1] = NA;
@@ -106,6 +112,7 @@ void ManageSIDs::ManageSIDsString(SortCIFP sort_, Tool tool_, ManageWaypoints *m
 				SIDsInfo[i][5] = label;
 				typenum++;
 				end = 0;
+				mark = 0;
 			}
 			else
 			{
@@ -117,14 +124,16 @@ void ManageSIDs::ManageSIDsString(SortCIFP sort_, Tool tool_, ManageWaypoints *m
 				sid++;
 			}
 			//this section works in the previous version, but now it is causing a break when the program runs
-			/*if (SIDsInfo[i - 1][5][0] == 'S' && SIDsInfo[i][1] == SIDsInfo[i - 1][1])
+			//if (SIDsInfo[i - 1][5][0] == 'S' && SIDsInfo[i][1] == SIDsInfo[i - 1][1])
+			if (end == 1 && mark == 1)
 			{
 				sidstr = "SID-" + to_string(sid) + " route";
 				SIDsInfo[i][5] = sidstr;
 				end = 1;
 				typenum = 1;
 				sid++;
-			}*/
+				mark = 1;
+			}
 		}
 		else
 		{
@@ -182,7 +191,6 @@ void ManageSIDs::ManageSIDsString(SortCIFP sort_, Tool tool_, ManageWaypoints *m
 		SIDsData[i][4] = tool_.GetSpeed(tempstr);
 	}
 
-	cout << SIDsData[5][4] << endl;
 	delete[] sort_.SIDsString;
 
 }

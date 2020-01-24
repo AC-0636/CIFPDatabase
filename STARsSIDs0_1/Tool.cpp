@@ -211,8 +211,8 @@ string Tool::LegType(string templeg)
 double Tool::PathNum(string tempstr)
 {
 	double pathID;
-	//start from 1 because 0 is dummy value "XX"
-	for (int i = 1; i < 24; i++)
+	//notice 0 is dummy value "N/A"
+	for (int i = 0; i < 24; i++)
 	{
 		if (tempstr == PathList[i])
 		{
