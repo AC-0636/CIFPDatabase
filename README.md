@@ -6,14 +6,14 @@ This program is created to obtain information from CIFP (Coded Instrument Flight
   
 
 
-##**CIFP file link**:##  
+##**CIFP file link**:  
 The original CIFP file can be downloaded from the FAA website:  
 https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/cifp/download/  
 The document is information is generated base on Airlines Electronic Engineering Committee (AEEC) Aeronautical Radio Incorporated (ARINC) Navigation System Data Base (NDB) international standard (ARINC 424) format. 
   
 
 
-##**Reference link/tool/extra material**:##  
+##**Reference link/tool/extra material**:
 **1.ARINC424-17**
 The current version of ARINC424 used is version 18, however, the program in this repo is using ARINC424 version 17 as reference. For more information of ARINC424-17, visit:  
 http://s8f1feefd4f70cc50.jimcontent.com/download/version/1347002609/module/6126893315/name/ARINC%20424-17.pdf  
@@ -39,7 +39,7 @@ For functions in SpatiaLite library:
 http://www.gaia-gis.it/gaia-sins/spatialite-sql-4.2.0.html  
 
   
-##**Information in the database**:## 
+##**Information in the database**:
 The CIFP file have information for both airport and heliport, the current version only considers **airport**. This type of information is distinguish by having the **5th** letter as **"P"** in the line of string from the CIFP. 
 For all the different information about the airport, it is obtained by checking the 13rd the letter of a given line of string. 
 The current edition of the generated database include the following information of an airport:  
@@ -63,7 +63,7 @@ There is also general information applied for every situation:
 
   
 
-##How to use##    
+##How to use  
 Download the CIFP file from FAA website and put it in the following path:  
 **/CIFPDatabase/CIFP file/**  
 Run the code, and the output database named "CIFP.db" will be generated and it can be found in:  
