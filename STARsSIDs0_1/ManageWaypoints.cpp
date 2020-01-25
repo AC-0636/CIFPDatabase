@@ -4,7 +4,7 @@
 
 ManageWaypoints::ManageWaypoints(SortCIFP sort_, Tool tool_)
 {
-
+	int fini = 0;
 	string tempstr, temptempstr;
 		double tempLatLong[2];
 		for (int i = 0; i < sort_.WaypointsNum; i++)
@@ -61,23 +61,28 @@ ManageWaypoints::ManageWaypoints(SortCIFP sort_, Tool tool_)
 			}
 			//get the waypoint name in the current line, origin locaiton 14th~18th in string
 			tempstr = sort_.WaypointsString[i].substr(13, 5);
-			if (tempstr[2] == ' ')
+			if (tempstr[2] == ' ' && fini == 0)
 			{
 				temptempstr = tempstr.substr(0, 2);
+				fini = 1;
 			}
-			else if (tempstr[3] == ' ')//waypoint name have 3 digit
+			else if (tempstr[3] == ' ' && fini == 0)//waypoint name have 3 digit
 			{
 				temptempstr = tempstr.substr(0, 3);
+				fini = 1;
 			}
-			else if (tempstr[4] == ' ')
+			else if (tempstr[4] == ' ' && fini == 0)
 			{
 				temptempstr = tempstr.substr(0, 4);
+				fini = 1;
 			}
 			else// (tempstr[5] == ' ')
 			{
 				temptempstr = tempstr.substr(0, 5);
+				fini = 1;
 			}
 			WaypointsInfo[i][1] = temptempstr;
+			fini = 0;
 		}
 
 	//	cout << WaypointsInfo[10][1] << endl;

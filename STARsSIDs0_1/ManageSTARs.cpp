@@ -142,9 +142,10 @@ void ManageSTARs::ManageSTARsProcedure(SortCIFP sort_, ManageWaypoints *magWpt_,
 					temptempstr = temp.substr(0, 5);
 				}
 			
-				RawSTARsProcedureData[i][1] = othertool_.getWaypointID(sort_, magWpt_, temptempstr);
-				int id = RawSTARsProcedureData[i][1];
+			    RawSTARsProcedureData[k][0] = othertool_.getWaypointID(sort_, magWpt_, temptempstr);
+				int id = RawSTARsProcedureData[k][0];
 				string sample = magWpt_->WaypointsInfo[id][1];
+
 				////////////////////////////////
 				//////////////////////////////////
 				//MARK: some code missing waypoint data -> to be fixed
