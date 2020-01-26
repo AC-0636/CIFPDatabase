@@ -96,5 +96,14 @@ void SortCIFP::SortFullString()
 			AirspacesNum++;
 		}
 	}
+	
+	/*cout << "Waypoints: " << WaypointsNum << endl;
+	cout << "STARs: " << RawSTARsNum << endl;
+	cout << "SIDs: " << SIDsNum << endl;
+	cout << "RWs: " << RunwaysNum << endl;
+	cout << "Apps: " << ApproachesNum << endl;
+	cout << "Airspc: " << AirspacesNum << endl;
+	cout << "Airways: " << AirwayRoutesNum << endl;
+*/
 	delete[] load.CIFPFileData;
 }

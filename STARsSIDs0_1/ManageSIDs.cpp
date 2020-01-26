@@ -40,7 +40,16 @@ void ManageSIDs::ManageSIDsString(SortCIFP sort_, Tool tool_, ManageWaypoints *m
 			SIDsInfo[i][3] = sort_.SIDsString[i].substr(22, 3);
 		}
 		//get heading
-		SIDsInfo[i][4] = sort_.SIDsString[i].substr(70, 3);
+		tempstr = sort_.SIDsString[i].substr(71, 3);
+		if (tempstr == "   ")
+		{
+			 SIDsData[i][6] = NA;
+		}
+		else
+		{
+			SIDsData[i][6] = stod(tempstr) / 10;
+		}
+
 
 		//get rank of this waypoint
 		tempstr = sort_.SIDsString[i].substr(26, 3);
@@ -94,49 +103,63 @@ void ManageSIDs::ManageSIDsString(SortCIFP sort_, Tool tool_, ManageWaypoints *m
 
 		if (temporder == 10) //a procedure section start
 		{
-
 			//get previous waypoint id
 			tempwaypoint = SIDsData[i - 1][1];
-			if (tempwaypoint != SIDsData[i][1])
+			
+			
+			if (SIDsData[i][1] == -999 && tempwaypoint != SIDsData[i][1]) 
 			{
-				label = "Feeder-" + to_string(typenum) + " route";
-				SIDsInfo[i][5] = label;
-				typenum++;
-				end = 0;
-				mark = 0;
+				//in this case SID start with -999 (no other waypoint info)
+				sidstr = "SID-" + to_string(sid) + " route";
+				SIDsInfo[i][4] = sidstr;
+				end = 1;
+				typenum = 1;
+				sid++;
 			}
 			else
 			{
-				//connectingPoint = tempwaypoint;
-				sidstr = "SID-" + to_string(sid) + " route";
-				SIDsInfo[i][5] = sidstr;
-				end = 1;
-				typenum = 1;
-				sid++;
+				// if the first waypoint id is different from the waypoint id from the last section
+				if (tempwaypoint != SIDsData[i][1] && connectingPoint != SIDsData[i][1])
+				{
+					label = "Feeder-" + to_string(typenum) + " route";
+					SIDsInfo[i][4] = label;
+					typenum++;
+					end = 0;
+					sid = 1;
+					mark = 0;
+				}
+				else
+				{
+					connectingPoint = tempwaypoint;
+					sidstr = "SID-" + to_string(sid) + " route";
+					SIDsInfo[i][4] = sidstr;
+					end = 1;
+					typenum = 1;
+					sid++;
+				}
+
+				if (end == 1 && mark == 1)
+				{
+					sidstr = "SID-" + to_string(sid) + " route";
+					SIDsInfo[i][4] = sidstr;
+					end = 1;
+					typenum = 1;
+					sid++;
+					mark = 1;
+				}
 			}
-			//this section works in the previous version, but now it is causing a break when the program runs
-			//if (SIDsInfo[i - 1][5][0] == 'S' && SIDsInfo[i][1] == SIDsInfo[i - 1][1])
-			if (end == 1 && mark == 1)
-			{
-				sidstr = "SID-" + to_string(sid) + " route";
-				SIDsInfo[i][5] = sidstr;
-				end = 1;
-				typenum = 1;
-				sid++;
-				mark = 1;
-			}
+
 		}
 		else
 		{
 			if (end == 0)
 			{
-				SIDsInfo[i][5] = label;
+				SIDsInfo[i][4] = label;
 				sid = 1;
 			}
 			else
 			{
-				SIDsInfo[i][5] = sidstr;
-
+				SIDsInfo[i][4] = sidstr;
 			}
 		}
 

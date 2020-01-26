@@ -7,7 +7,8 @@ class ManageApproaches
 {
 public:
 
-	//the file used have 132047 Approach procedure
+	//the file used have 132047 Approach procedure for old version
+	//the file used have 131519 Approach procedure for new version
 	//[][0]Country ID, [][1]Waypoint ID, [][2]order of the waypoint for this procedure, [][3] altitude, [][4]heading(71~74), [][5]frequency if applicable
 	//[][6] path number sign, [][7]theta (63~66),[][8]rho(67~70),[][9]route distance(75~78),[][10]turning direction
 	double ApproachesData[132100][11];

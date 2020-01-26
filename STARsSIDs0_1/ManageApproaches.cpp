@@ -47,7 +47,7 @@ void ManageApproaches::ManageApproachesString(SortCIFP sort_, Tool tool_, OtherT
 		//get approach type
 		ApproachesInfo[i][2] = tool_.ApproachType(sort_.ApproachesString[i][13]);
 		//get frequency info except for RNAV
-		if (sort_.ApproachesString[i][13] != 'R')//ApproachesString[i][13] == 'I' || ApproachesString[i][13] == 'V' || ApproachesString[i][13] == 'L')
+		if (sort_.ApproachesString[i][13] != 'R')
 		{
 			//get channel frequency
 			ApproachesData[i][5] = othertool_.ApproachFrequency(sort_.ApproachesString[i].substr(50, 4),sort_,magWpt_);

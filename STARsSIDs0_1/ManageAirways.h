@@ -8,11 +8,12 @@ class ManageAirways
 public:
 
 
-	//the file used have 20132 airway & route info
+	//the file used have 20132 airway & route info for old version
+	//the file used have 20164 airway & route info for new version
 	//[][0]Country ID, [][1]Waypoint ID, [][2]waypoint order, [][3] altitude, [][4]heading, [][5]route distance
-	double AirwayRoutesData[20150][6];
+	double AirwayRoutesData[20200][6];
 	//[0]Airway/RouteName
-	string AirwayRoutesInfo[20150];
+	string AirwayRoutesInfo[20200];
 
 	ManageAirways();
 	~ManageAirways();

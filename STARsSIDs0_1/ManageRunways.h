@@ -4,11 +4,12 @@
 class ManageRunways
 {
 public:
-	//the file used have 13726 Runway info
+	//the file used have 13726 Runway info for old version
+	//the file used have 13858 Runway info for new version
 	//[][0]Country ID, [][1]runway length, [][2] width, [][3]magnetic heading, [][4]lat, [][5]long, [][6]elevation
-	double RunwaysData[13750][7];
+	double RunwaysData[14000][7];
 	//[][0]airport code, [][1] runway name
-	string RunwaysInfo[13750][2];
+	string RunwaysInfo[14000][2];
 
 
 
