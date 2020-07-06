@@ -41,7 +41,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -84,11 +84,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\AERO\Good Stuff\CIFP\Code\STARsSIDs0_1\STARsSIDs0_1\spatialite\headers;D:\AERO\Good Stuff\CIFP\Code\STARsSIDs0_1\STARsSIDs0_1\sqlite\header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\AERO\Good Stuff\CIFP\Code\CIFPDatabase\extralib\sqlite\header;D:\AERO\Good Stuff\CIFP\Code\CIFPDatabase\extralib\spatialite\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>D:\AERO\Good Stuff\CIFP\Code\STARsSIDs0_1\STARsSIDs0_1\spatialite;D:\AERO\Good Stuff\CIFP\Code\STARsSIDs0_1\STARsSIDs0_1\sqlite;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>spatialite_i.lib;sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\AERO\Good Stuff\CIFP\Code\CIFPDatabase\extralib\spatialite;D:\AERO\Good Stuff\CIFP\Code\CIFPDatabase\extralib\sqlite;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

@@ -1,7 +1,6 @@
 #include "ManageSTARs.h"
 
 
-
 ManageSTARs::ManageSTARs()
 {
 }

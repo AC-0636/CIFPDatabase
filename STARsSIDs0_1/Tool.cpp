@@ -11,7 +11,7 @@ Tool::~Tool()
 {
 }
 
-//area(country) code
+//area(country) code, base on ARINC 424-17, the data in CIFP covered 6 area of the whole world, each area have a umber represen 
 double Tool::GetAreaCode(string tempstr)
 {
 	int AreaCode;
@@ -27,7 +27,7 @@ double Tool::GetAreaCode(string tempstr)
 	return AreaCode;
 }
 
-//for calculation convinence, degrees to decimal
+//for calculation convinence, convert degrees to decimal for 
 double Tool::DegtoDec(string deg, string min, string sec) 
 {
 	double tempdeg = stod(deg);
@@ -37,6 +37,9 @@ double Tool::DegtoDec(string deg, string min, string sec)
 }
 
 //Latitude Longitude calculation
+//define North/South and East/West
+//for South and West, put '-' in front of the number read from CIFP
+//for North and South, keep the number read from CIFP
 void Tool::LatLongCal(double temploc[2], string tempstr) //tempstr = NddmmssssWdddmmssss
 {
 	string tempdeg, tempmin, tempsec;
@@ -69,6 +72,7 @@ void Tool::LatLongCal(double temploc[2], string tempstr) //tempstr = NddmmssssWd
 }
 
 //flight level (altitude constrain) calculation
+//format in CIPF: FLxxx/xxxxx
 double Tool::CalAlt(string AltStr, int mark) //AltStr = FLXXX/xxxxx , mark for unlimit
 {
 	double tempVal, tempAlt;
@@ -110,7 +114,8 @@ double Tool::GetSpeed(string SpeedStr)
 	return tempVal;
 }
 
-//get leg type
+//get leg type for SID, STAR, APPCH
+//check ARICN 424-17 for detail
 string Tool::LegType(string templeg)
 {
 	string leg, sec1, sec2;
@@ -206,8 +211,9 @@ string Tool::LegType(string templeg)
 	return leg;
 }
 
-//path type
+//path type for APPCH
 //assign IDs to path type by using there order stored in array
+//check ARINC 424-17 for detail
 double Tool::PathNum(string tempstr)
 {
 	double pathID;
@@ -242,6 +248,7 @@ string Tool::ApproachType(char tempchar)
 
 
 //get the airspace type from the list
+//check ARINC424-17 for airspace type
 string Tool::ControlledAirspaceType(string tempstr)
 {
 	string CAt;
@@ -258,6 +265,8 @@ string Tool::ControlledAirspaceType(string tempstr)
 	return CAt;
 }
 
+//get the airspace type from the list
+//check ARINC424-17 for airspace type
 string Tool::RestrictiveAirspaceType(string tempstr)
 {
 	string RAt;
@@ -276,6 +285,7 @@ string Tool::RestrictiveAirspaceType(string tempstr)
 
 
 //get the airspace boundary drawing description
+//check ARINC 424-17 FOR airspace boundary detail
 void Tool::AirspaceBoundary(string description[3], string tempstr)
 {
 	char pos1, pos2;
@@ -317,7 +327,6 @@ void Tool::AirspaceBoundary(string description[3], string tempstr)
 	}
 
 }
-
 
 
 //get the airspace altitude unit from the list(if exist)

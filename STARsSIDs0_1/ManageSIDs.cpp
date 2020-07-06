@@ -1,7 +1,6 @@
 #include "ManageSIDs.h"
 
 
-
 ManageSIDs::ManageSIDs()
 {
 }

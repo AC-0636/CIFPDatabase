@@ -1,0 +1,58 @@
+1. Download the CIFP file form FAA:
+https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/cifp/download/
+
+2. Extract the downlaod folder and copy the "FAACIFP18" file to  folder "CIFP file"
+
+3. Open the solution file and run the code, the output database "CIFP.db" will be in "CIFPDatabase/output/"
+
+What each function do:
+
+1. LoadCIFP
+   load the CIFP file, consider each line as an element of string array "CIFPFileData"
+
+2. SortCIFP
+   categorize the string in "CIFPFileData", use ARINC424-17 as reference, use the 5th letter and the 13rd letter of the string to define the data type, which include:
+   - waypoint
+   - airport (have heliport, but not included in this code)
+   		-> STAR
+   		-> SID
+   		-> Runway
+   		-> APPCH
+   		-> airport terminal waypoint
+   - airspace
+
+3. Tool
+   some functions that need use multiple time in decoding the CIFP string
+   e.g: convert latitude/longitude from degree to decimal; get defination/description(from ARINC424) of the letter in CIFP  
+
+4. OtherTool
+    some funtions that need use multiple time in managint the data string
+
+
+5. ManageWaypoints
+   manage string array "WaypointsString"
+   use ARINC 424-17 as reference, 'chop' the string in the corresponding place to get info
+
+6. ManageSTARs
+   manage string array "STARsString"
+   use ARINC 424-17 as reference, 'chop' the string in the corresponding place to get info
+
+7. ManageSIDs
+   manage string array "SIDsString"
+   use ARINC 424-17 as reference, 'chop' the string in the corresponding place to get info
+
+8. ManageRunways
+   manage string array "RunwaysString"
+   use ARINC 424-17 as reference, 'chop' the string in the corresponding place to get info
+
+9. ManageApproaches
+   manage string array "ApproachesString"
+   use ARINC 424-17 as reference, 'chop' the string in the corresponding place to get info
+
+10. ManageAirways
+   manage string array "AirwayToutesString"
+   use ARINC 424-17 as reference, 'chop' the string in the corresponding place to get info
+
+11. ManageAirspace
+   manage string array "AirspacesString"
+   use ARINC 424-17 as reference, 'chop' the string in the corresponding place to get info

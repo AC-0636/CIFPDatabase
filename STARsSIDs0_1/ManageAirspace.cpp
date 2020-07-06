@@ -1,7 +1,6 @@
 #include "ManageAirspace.h"
 
 
-
 ManageAirspace::ManageAirspace()
 {
 }

@@ -6,6 +6,9 @@
 #include <spatialite/gaiageo.h>
 #include <spatialite.h>
 #include <spatialite\sqlite3.h>
+//#include "sqlite3.h"
+//#include "spatialite.h"
+//#include "spatialite\gaiageo.h"
 #include "LoadCIFP.h"
 #include "SortCIFP.h"
 #include "ManageWaypoints.h"
@@ -47,7 +50,7 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName)
 void SetupDB(int argc, char* argv[])
 {
 	sqlite3 *db;
-	rc = sqlite3_open("CIFP.db", &db);
+	rc = sqlite3_open("./output/CIFP.db", &db);
 
 	rc = sqlite3_exec(db, "BEGIN TRANSACTION", NULL, NULL, &zErrMsg);
 
@@ -353,7 +356,6 @@ bool FillWaypointsTable(sqlite3 *db,SortCIFP sort_,ManageWaypoints *magWpt)
 		}
 
 	}
-	//cout<< "WAYPOINT!!!"<< tempstr << endl;
 	sqlite3_exec(db, "END TRANSACTION", NULL, NULL, &zErrMsg);
 
 	return bRet;
@@ -410,11 +412,10 @@ bool FillSTARsBLOBTable(sqlite3 *db,ManageSTARs *magSTARs_)
 	k = 0;
 	int ks = 0;
 	int count = 0;
-	//str3 = "GeomFromText('POINTZ(" + to_string(WaypointsData[i][1]) + " " + to_string(WaypointsData[i][2]) + " " + to_string(NA) + ")', 4326))";
 	string InsertStr = "INSERT INTO STARsBLOB (ProcedureName, ProcedureType, ArrivingRunway, Route_BLOB) VALUES('";
 	string GeomStr1 = "GeomFromText('LINESTRINGZM(";
 	string GeomStr2 = ")',4326))";
-	//string Comma = ",";
+
 
 	sqlite3_exec(db, "BEGIN TRANSACTION", NULL, NULL, &zErrMsg);
 	for (i = 0; i <  magSTARs_->STARsStepsCount + 1; i++) //STARsStepsCount
@@ -441,7 +442,6 @@ bool FillSTARsBLOBTable(sqlite3 *db,ManageSTARs *magSTARs_)
 
 		sql = tempstr.c_str();
 		sqlite3_exec(db, sql, callback, 0, &zErrMsg);
-		//cout << tempstr << endl;
 	}
 	sqlite3_exec(db, "END TRANSACTION", NULL, NULL, &zErrMsg);
 	return bRet;
@@ -753,48 +753,50 @@ int main()
 	cout << "Managing waypoint info..." << endl;
 	ManageWaypoints *magWpt_ = new ManageWaypoints(sort_, tool_);
 	cout << "Managing STAR info..." << endl;
-	ManageSTARs *magSTARs_= new ManageSTARs;
-	magSTARs_->ManageSTARsProcedure(sort_, magWpt_,tool_,othertool_);
+	//ManageSTARs *magSTARs_= new ManageSTARs;
+	//magSTARs_->ManageSTARsProcedure(sort_, magWpt_,tool_,othertool_);
 	
 	cout << "Managing SID info..." << endl;
-//	ManageSIDs *magSID_ = new ManageSIDs;
-//	magSID_->ManageSIDsString(sort_, tool_, magWpt_,othertool_);
+	//ManageSIDs *magSID_ = new ManageSIDs;
+	//magSID_->ManageSIDsString(sort_, tool_, magWpt_,othertool_);
 
 	cout << "Managing Runways info..." << endl;
-//	ManageRunways *magRWs_ = new ManageRunways;
-//	magRWs_->ManageRunwaysString(sort_, tool_);
+	//ManageRunways *magRWs_ = new ManageRunways;
+	//magRWs_->ManageRunwaysString(sort_, tool_);
 
 	cout << "Managing Approaches info..." << endl;
-//	ManageApproaches *magApproach_ = new ManageApproaches;
-//	magApproach_->ManageApproachesString(sort_, tool_, othertool_, magWpt_);
+	//ManageApproaches *magApproach_ = new ManageApproaches;
+	//magApproach_->ManageApproachesString(sort_, tool_, othertool_, magWpt_);
 
 	cout << "Managing airway and route info..." << endl;
-//	ManageAirways *magAirway_ = new ManageAirways;
-//	magAirway_->ManageAirwayRoutesString(sort_,tool_,othertool_,magWpt_);
+	//ManageAirways *magAirway_ = new ManageAirways;
+	//magAirway_->ManageAirwayRoutesString(sort_,tool_,othertool_,magWpt_);
 
 	cout << "Managing airspace info..." << endl;
-//	ManageAirspace *magAirspc_ = new ManageAirspace;
-//	magAirspc_->ManageAirspacesString(sort_, tool_);
+	//ManageAirspace *magAirspc_ = new ManageAirspace;
+	//magAirspc_->ManageAirspacesString(sort_, tool_);
+
+	cout << "Creating database..." << endl;
 
 	SetupDB(NULL, NULL);
 	sqlite3 *DB = NULL;
-	int path = sqlite3_open("CIFP.db", &DB);
+	int path = sqlite3_open("./output/CIFP.db", &DB);
 
 	cout << "Generating Area table..." << endl;
-//	FillAreaTable(DB,tool_);
+	FillAreaTable(DB,tool_);
 
 	cout << "Generating Waypoints table..." << endl;
-//	FillWaypointsTable(DB,sort_,magWpt_);
+	FillWaypointsTable(DB,sort_,magWpt_);
 
 	cout << "Generating STARs table..." << endl;
-	FillAirportsSTARsTable(DB,magSTARs_);
-	FillSTARsTable(DB,magSTARs_);
+	//FillAirportsSTARsTable(DB,magSTARs_);
+	//FillSTARsTable(DB,magSTARs_);
 
 	cout << "Generating STARsBLOB table..." << endl;
-	FillSTARsBLOBTable(DB,magSTARs_);
+	//FillSTARsBLOBTable(DB,magSTARs_);
 
 	cout << "Generating SIDs table..." << endl;
-//	FillSIDsTable(DB,sort_,magSID_);
+	//FillSIDsTable(DB,sort_,magSID_);
 
 	cout << "Generating runways table..." << endl;
 	//FillRunwaysTable(DB,sort_,magRWs_);

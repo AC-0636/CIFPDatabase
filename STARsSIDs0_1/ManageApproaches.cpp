@@ -1,7 +1,6 @@
 #include "ManageApproaches.h"
 
 
-
 ManageApproaches::ManageApproaches()
 {
 }

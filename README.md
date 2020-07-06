@@ -6,12 +6,10 @@ This program is created to obtain information from CIFP (Coded Instrument Flight
   
 
 
-
 **CIFP file link**:  
 The original CIFP file can be downloaded from the FAA website:  
 https://www.faa.gov/air_traffic/flight_info/aeronav/digital_products/cifp/download/  
 The document is information is generated base on Airlines Electronic Engineering Committee (AEEC) Aeronautical Radio Incorporated (ARINC) Navigation System Data Base (NDB) international standard (ARINC 424) format. 
-  
 
 
 
@@ -65,11 +63,4 @@ There is also general information applied for every situation:
 ***see CIFPdbInfo.docx for more detail of the table setting***
 
   
-
-##How to use##    
-Download the CIFP file from FAA website and put it in the following path:  
-**/CIFPDatabase/CIFP file/**  
-Run the code, and the output database named "CIFP.db" will be generated and it can be found in:  
-**/CIFPDatabase/STARsSIDs0_1/**  
-*Depends on the performance of the computer, the whole process will takes ~70mins to complete*
 

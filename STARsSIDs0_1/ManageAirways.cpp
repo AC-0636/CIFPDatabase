@@ -1,7 +1,6 @@
 #include "ManageAirways.h"
 
 
-
 ManageAirways::ManageAirways()
 {
 

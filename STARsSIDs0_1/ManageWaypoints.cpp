@@ -85,7 +85,6 @@ ManageWaypoints::ManageWaypoints(SortCIFP sort_, Tool tool_)
 			fini = 0;
 		}
 
-	//	cout << WaypointsInfo[10][1] << endl;
 		delete[] sort_.WaypointsString;
 		
 }

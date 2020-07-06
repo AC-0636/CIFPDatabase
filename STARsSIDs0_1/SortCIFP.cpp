@@ -29,7 +29,7 @@ void SortCIFP::SortFullString()
 	{
 		tempstr = load.CIFPFileData[i];
 		//get codes for waypoints and put the full string into WaypointsString array
-		//5:D, 6: blanRawSTARsNum/B || 5:EAENRT
+		//if the 5th letter of the stirng is one of the following cases, then this string is data for waypoint
 		size_t FindD = tempstr.find("D");
 		size_t FindEA = tempstr.find("EAENRT");
 		size_t FindP = tempstr.find("P ");
@@ -51,7 +51,9 @@ void SortCIFP::SortFullString()
 			AirwayRoutesString[AirwayRoutesNum] = tempstr;
 			AirwayRoutesNum++;
 		}
-		//get codes for airport -> 5th letter=P
+		//////////////////////////////////////////////////
+		//get data for airport -> 5th letter=P
+		//type of airport informaiton is based on the 13rd letter of the stirng
 		else if (FindP == 4)
 		{
 			char InfoType = tempstr[12];
@@ -80,8 +82,9 @@ void SortCIFP::SortFullString()
 				break;
 			}
 		}
-		//airspace code
-		else if (FindU == 1)
+		//////////////////////////////////////////
+		//airspace data -> 5th letter = U
+		else if (FindU == 1) 
 		{
 			temp = tempstr[4];
 			if (temp == 'U')
@@ -97,13 +100,6 @@ void SortCIFP::SortFullString()
 		}
 	}
 	
-	/*cout << "Waypoints: " << WaypointsNum << endl;
-	cout << "STARs: " << RawSTARsNum << endl;
-	cout << "SIDs: " << SIDsNum << endl;
-	cout << "RWs: " << RunwaysNum << endl;
-	cout << "Apps: " << ApproachesNum << endl;
-	cout << "Airspc: " << AirspacesNum << endl;
-	cout << "Airways: " << AirwayRoutesNum << endl;
-*/
+
 	delete[] load.CIFPFileData;
 }

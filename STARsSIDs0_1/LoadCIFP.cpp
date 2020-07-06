@@ -9,7 +9,9 @@ LoadCIFP::~LoadCIFP()
 {
 }
 
-void LoadCIFP::ReadCIFPFile() //read file
+//read CIFP
+//load each line as one string element in string array CIFPFileData
+void LoadCIFP::ReadCIFPFile() 
 {
 	LineCounter = 0;
 	CIFPFileData = new string[DataSize];

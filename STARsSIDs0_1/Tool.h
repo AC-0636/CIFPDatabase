@@ -4,6 +4,7 @@
 #define NA -999;
 #define UNLTD 999999999;
 using namespace std;
+//some common functions being used for SID, STAR, APPCH and unit convert
 class Tool
 {
 public:
@@ -16,7 +17,7 @@ public:
 	Tool();
 	~Tool();
 
-	//area(country) code
+	//area(country) code from CIFP
 	double GetAreaCode(string tempstr);
 
 	//for calculation convinence, degrees to decimal
@@ -31,7 +32,7 @@ public:
 	//speed limit
 	double GetSpeed(string SpeedStr);
 
-	//get leg type 
+	//get leg type, code in CIFP for leg type, used in SID,STAR,APPCH 
 	string LegType(string templeg);
 
 	//assign IDs for approaches path
@@ -57,7 +58,7 @@ private:
 
 
 
-	////leg type
+	////leg type defination, base on ARINC 424-17
 	//complete leg = leg1 + leg2, or just legs
 	string leg1[5] = { "Arc to ", "Course to ","Direct to ","Track from a Fix ","Heading to " };
 	string leg2[7] = {"an Altitude", "for a Distance", "to a DME", "a Fix", "an Intercept", "a Manual termination", "Radial termination"};
@@ -70,19 +71,21 @@ private:
 
 	//approach type
 	//use a 2D array to store the info
-	//[][0] letters in CIFP, [][1] translated meaning
+	//[][0] letters in CIFP, [][1] translated meaning, base on ARINC 424-17
 	string ApproachList[22][2] = { {"A","Approach Transition"}, {"B", "Backcourse/Localizer"}, {"D", "VORDME"}, {"F","FMS"}, {"G","IGS"}, {"H","H??"}, {"I", "ILS"}, {"J", "GLS"}, {"L", "LOC"}, {"M","MLS"}, {"N", "NDB"}, {"P","GPS"}, {"Q","NDB+DME"}, {"R","RNAV"}, {"S","VOR using VORDME/VORTAC"}, {"T","TACAN"}, {"U","SDF"}, {"V","VOR"}, {"W","MLS, type A approach"}, {"X","LDA"}, {"Y", "MLS, type B,C approach"}, {"Z","Miss Approach"} };
 	
 	//list of control airspace type
+	//[][0] letters in CIFP, [][1] translated meaning, base on ARINC 424-17
 	string AirspaceList[6][2] = { {"A","Class C"},{"C","Control Area"}, {"M","Terminal Control Area"}, {"R","Radar Zone or Radar Area"}, {"T","Class B"}, {"Z","Class D"} };
 
 	//list of restrictive airspace type
+		//[][0] letters in CIFP, [][1] translated meaning, base on ARINC 424-17
 	string RestrictiveAirspaceList[9][2] = { {"A","Alert"}, {"C","Caution"}, {"D","Danger"},{"M","Military Operation Area"}, {"P", "Prohibited"}, {"R","Restricted"},{"T","Training"},{"W","Warning"},{"U","Unspecified/Unknown"} };
 
-	//list of airspace boundary drawing description
 
 
 	//list of airspace altitude unit
+	//[][0] letters in CIFP, [][1] translated meaning, base on ARINC 424-17
 	string AltUnitList[2][2] = { {"M","MSL"}, {"A","AGL"} };// , { " ","N/A" }
 
 

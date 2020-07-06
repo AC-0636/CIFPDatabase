@@ -54,7 +54,7 @@ double OtherTool::ApproachFrequency(string tempstr, SortCIFP sort_,ManageWaypoin
 }
 
 
-//get waypoint ID
+//get waypoint ID from our waypoint array
 int OtherTool::getWaypointID(SortCIFP sort_, ManageWaypoints *magWpt_, string temptempstr)
 {
 
